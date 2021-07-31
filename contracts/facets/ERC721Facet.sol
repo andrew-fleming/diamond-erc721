@@ -50,17 +50,17 @@ contract ERC721Facet {
     /**
      * @dev See {IERC721Metadata-tokenURI}.
      */
-    function tokenURI(uint256 _tokenId) external view returns (string memory) {
+    function tokenURI(uint256 _tokenId) external pure returns (string memory) {
         string memory baseURI = _baseURI();
         return LibStrings.strWithUint(baseURI, _tokenId); //Here is your URL!
     }
 
-    /**
-     * @dev Base URI for computing {tokenURI}. If set, the resulting URI for each
-     * token will be the concatenation of the `baseURI` and the `tokenId`. Empty
-     * by default, can be overriden in child contracts.
-     */
-    function _baseURI() internal view virtual returns (string memory) {
+    function _setTokenURI(uint256 tokenId, string memory _tokenURI) internal virtual {
+        require(_exists(tokenId), "ERC721URIStorage: URI set of nonexistent token");
+        s._tokenURIs[tokenId] = _tokenURI;
+    }
+
+    function _baseURI() internal pure returns (string memory) {
         return "";
     }
 

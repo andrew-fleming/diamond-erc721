@@ -7,7 +7,7 @@ struct NFT {
     uint256 totalSupply;
     // Array with all token ids, used for enumeration
     uint256[] _allTokens;
-    
+
     // Mapping from token ID to owner address
     mapping(uint256 => address) _owners;
 
@@ -28,4 +28,7 @@ struct NFT {
 
     // Mapping from token id to position in the allTokens array
     mapping(uint256 => uint256) _allTokensIndex; 
+
+    mapping (uint256 => string) _tokenURIs;
+
 }

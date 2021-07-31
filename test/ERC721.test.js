@@ -22,6 +22,8 @@ const {
     let alice
     let bob
     let token
+
+    let tokenURI = "www.token"
   
     before(async function () {
         [owner, alice, bob] = await ethers.getSigners();
@@ -58,7 +60,7 @@ const {
         })
 
         it("should mint", async() => {
-            await nftFactory.mintItem(owner.address);
+            await nftFactory.mintItem(owner.address, tokenURI);
         })
 
         it("should track tokenId mint", async() => {
@@ -78,7 +80,7 @@ const {
         })
 
         it("should show tokenIds", async() => {
-            await nftFactory.mintItem(alice.address)
+            await nftFactory.mintItem(alice.address, tokenURI)
             expect(await token.balanceOf(alice.address))
                 .to.eq(2)
              

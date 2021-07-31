@@ -13,7 +13,7 @@ import { IDiamondLoupe } from "../interfaces/IDiamondLoupe.sol";
 import { IDiamondCut } from "../interfaces/IDiamondCut.sol";
 import { IERC173 } from "../interfaces/IERC173.sol";
 import { IERC165 } from "../interfaces/IERC165.sol";
-import { NFT, LinkedList } from "../libraries/LibAppStorage.sol";
+import { NFT } from "../libraries/LibAppStorage.sol";
 
 // It is exapected that this contract is customized if you want to deploy your diamond
 // with data from a deployment script. Use the init function to initialize state variables
@@ -21,7 +21,6 @@ import { NFT, LinkedList } from "../libraries/LibAppStorage.sol";
 
 contract DiamondInit {    
     NFT internal s;
-    LinkedList internal l;
 
     struct Args {
         string name;

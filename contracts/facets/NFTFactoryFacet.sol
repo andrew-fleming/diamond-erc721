@@ -7,10 +7,11 @@ import { NFT } from "../libraries/LibAppStorage.sol";
 
 contract NFTFactoryFacet is ERC721Facet {
 
-    function mintItem(address to) external {
+    function mintItem(address to, string memory tokenURI) external {
         LibDiamond.enforceIsContractOwner();
         uint256 nftNum = s.totalSupply += 1;
         _safeMint(to, nftNum);
+        _setTokenURI(nftNum, tokenURI);
     }
 
     function transfer(address to, uint256 tokenId) external {
