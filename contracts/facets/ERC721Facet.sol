@@ -55,7 +55,7 @@ contract ERC721Facet {
         return LibStrings.strWithUint(baseURI, _tokenId); //Here is your URL!
     }
 
-    function _setTokenURI(uint256 tokenId, string memory _tokenURI) internal virtual {
+    function _setTokenURI(uint256 tokenId, string memory _tokenURI) internal {
         require(_exists(tokenId), "ERC721URIStorage: URI set of nonexistent token");
         s._tokenURIs[tokenId] = _tokenURI;
     }
@@ -172,7 +172,7 @@ contract ERC721Facet {
      * Tokens start existing when they are minted (`_mint`),
      * and stop existing when they are burned (`_burn`).
      */
-    function _exists(uint256 tokenId) internal view virtual returns (bool) {
+    function _exists(uint256 tokenId) internal view returns (bool) {
         return s._owners[tokenId] != address(0);
     }
 
