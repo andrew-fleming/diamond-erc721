@@ -237,6 +237,7 @@ contract ERC721Facet {
 
         s._balances[to] += 1;
         s._owners[tokenId] = to;
+        //s.totalSupply += 1;
 
         emit LibERC721.Transfer(address(0), to, tokenId);
     }
@@ -325,5 +326,5 @@ contract ERC721Facet {
         address from,
         address to,
         uint256 tokenId
-    ) internal {}
+    ) internal virtual {}
 }

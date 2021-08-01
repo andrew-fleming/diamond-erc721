@@ -29,6 +29,9 @@ struct NFT {
     // Mapping from token id to position in the allTokens array
     mapping(uint256 => uint256) _allTokensIndex; 
 
+    //mapping(address => uint32[]) ownerTokenIds;
+    //mapping(address => mapping(uint256 => uint256)) ownerTokenIdIndexes;
+
     mapping (uint256 => string) _tokenURIs;
 
 }

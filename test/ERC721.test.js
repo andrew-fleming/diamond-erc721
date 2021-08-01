@@ -9,11 +9,9 @@ const {
   
   const { expect } = require('chai')
   
-  describe('DiamondTest', async function () {
+  describe('ERC721 Test', async function () {
     let diamondAddress
     let diamondCutFacet
-    let diamondLoupeFacet
-    let ownershipFacet
     let tx
     let receipt
     const addresses = []
@@ -72,11 +70,11 @@ const {
     describe("Transfer", async() => {
         it("Should track transfer", async() => {
             await nftFactory.transfer(alice.address, 1)
-            //expect(await token.balanceOf(alice.address))
-            //    .to.eq(1)
-//
-            //expect(await token.balanceOf(owner.address))
-            //    .to.eq(0)
+            expect(await token.balanceOf(alice.address))
+                .to.eq(1)
+
+            expect(await token.balanceOf(owner.address))
+                .to.eq(0)
         })
 
         it("should show tokenIds", async() => {
@@ -85,6 +83,31 @@ const {
                 .to.eq(2)
              
         })
+    })
+
+    describe("Enumeration", async() => {
+        before(async() => {
+            await Promise.all([
+                nftFactory.mintItem(owner.address, tokenURI),
+                nftFactory.mintItem(owner.address, tokenURI),
+                nftFactory.mintItem(owner.address, tokenURI),
+            ])
+        })
+        
+        it("should track tokenOfOwnerByIndex", async() => {
+            expect(await nftFactory.tokenOfOwnerByIndex(owner.address, 0))
+                .to.eq(3)
+            expect(await nftFactory.tokenOfOwnerByIndex(owner.address, 1))
+                .to.eq(4)
+        })
+
+        it("should track tokenByIndex", async() => {
+            expect(await nftFactory.tokenByIndex(0))
+                .to.eq(1)
+            expect(await nftFactory.tokenByIndex(1))
+                .to.eq(2)
+        })
+        
     })
 
 })
